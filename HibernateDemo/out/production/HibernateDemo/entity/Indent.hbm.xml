@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="entity.Indent" table="indent" schema="my_test">
+        <id name="indentId">
+            <column name="indent_id" sql-type="int(11)"/>
+        </id>
+        <property name="indentNo">
+            <column name="indent_no" sql-type="varchar(20)" length="20" not-null="true"/>
+        </property>
+        <property name="totalPrice">
+            <column name="totalPrice" sql-type="float" precision="-1" not-null="true"/>
+        </property>
+        <property name="content">
+            <column name="content" sql-type="varchar(30)" length="30" not-null="true"/>
+        </property>
+        <property name="isPayoff">
+            <column name="isPayoff" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="isSales">
+            <column name="isSales" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="submitTime">
+            <column name="submitTime" sql-type="timestamp" not-null="true"/>
+        </property>
+        <property name="consignmentTime">
+            <column name="consignmentTime" sql-type="timestamp" not-null="true"/>
+        </property>
+
+        <many-to-one name="buyer" column ="buyer_id" class="entity.Buyer" cascade="all"/>
+    </class>
+</hibernate-mapping>

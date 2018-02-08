@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><Orders>
+    <Order orderDate="2012-6-4" orderID="A001">
+        <name>玩具</name>
+        <number>10</number>
+        <city>北京</city>
+        </Order>
+    <Order orderID="A002">
+        <name>文具</name>
+        <number>12</number>
+        <city>青岛</city>
+   </Order>
+
+</Orders>

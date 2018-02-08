@@ -1,0 +1,8 @@
+com/springboot/ping/generic/controller/BaseCURDController.class
+com/springboot/ping/generic/service/GenericService.class
+com/springboot/ping/generic/vo/DataGrid.class
+com/springboot/ping/generic/vo/Response.class
+com/springboot/ping/generic/controller/BaseController.class
+com/springboot/ping/generic/service/SpringContext.class
+com/springboot/ping/generic/controller/BaseQueryController.class
+com/springboot/ping/generic/GenericControllerConfiguration.class

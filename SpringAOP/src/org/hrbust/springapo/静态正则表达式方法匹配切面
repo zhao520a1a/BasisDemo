@@ -1,0 +1,9 @@
+静态正则表达式方法匹配切面：通过正则表达式匹配方法名定义切入点
+实现类：Spring自带的RegexpMethodPointcutAdvisor类
+使用方法：new RegexpMethodePointcutAdvisor (正则表达式,  new 增强实现类() )
+
+几种常见的正则表示式：
+.*set.*                  表示所有类中包含set的方法；
+org\.hrbust\.service\..*    表示这个包下所有类的所有方法
+org\.hrbust\.service\..*Service\.sava.+     表示这个包下所有以“Service”结尾的类中以“sava”开头的方法，且“sava”后至少有一个字符
+注：\.是.的转义字符，因此相当于org.hrbust.service..*

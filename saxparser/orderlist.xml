@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Orders>
+    <Order orderID="A001" orderDate="2012-6-4">
+        <name>玩具</name>
+        <number>10</number>
+        <city>北京</city>
+    </Order>
+    <Order orderID="A002" orderDate="2012-6-4">
+        <name>文具</name>
+        <number>5</number>
+        <city>青岛</city>
+    </Order>
+    <Order orderID="A003" orderDate="2012-6-4">
+        <name>衣服</name>
+        <number>10</number>
+        <city>长春</city>
+    </Order>
+</Orders>

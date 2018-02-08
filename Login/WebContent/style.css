@@ -1,0 +1,146 @@
+@CHARSET "UTF-8";
+
+.backgroundimg {
+	background-image: url(./1.png);
+	background-repeat: repeat;
+	background-position:left;
+	background-size:1400px;
+	
+}
+
+.player {
+	frameborder: no;
+	border: 0;
+	marginwidth: 0;
+	marginheight: 0;
+	width: 330;
+	height: 66;
+	position:absolute;
+	top:20px; 
+	right:30px;
+}
+.picture {
+	position: absolute;
+	top:100px;
+	right:250px;
+}
+
+.lineDl {
+	line-height: 34px;
+	height: auto;
+	margin-top: 10px;
+	margin-bottom: 2px;
+	*display: inline-block;
+	zoom: 1;
+	*position: relative;
+}
+
+.lineDl .input {
+	height: 16px;
+	line-height: 16px;
+	padding: 9px 6px;
+}
+
+select {
+	width: 150px;
+	height: 30px;
+}
+
+.lineDl textarea {
+	width: 300px;
+	height: 150px;
+	line-height: 26px;
+	padding: 9px 6px;
+}
+
+.lineDl dt {
+	float: left;
+	width: 124px;
+	text-align: right;
+	margin-right: 10px;
+	line-height: 34px;
+	font-size: 14px;
+}
+
+.lineDl dd {
+	float: left;
+	*display: inline-block;
+	zoom: 1;
+	font-size: 14px;
+}
+
+.lineDl dt b {
+	color: #fe5b00;
+	font-family: "宋体", "黑体";
+}
+
+.lineDl:after {
+	clear: both;
+	content: ".";
+	display: block;
+	height: 0px;
+	visibility: hidden;
+}
+
+.lineDl dd:after {
+	clear: both;
+	content: ".";
+	display: block;
+	height: 0;
+	visibility: hidden;
+	zoom: 1;
+}
+
+/*日期*/
+.inptext_fl {
+	float: left;
+	position: relative;
+	margin-right: 6px;
+	zoom: 1;
+	_display: inline;
+	word-break: break-all;
+}
+
+.inptext_fl .input {
+	height: 8px;
+	float: left;
+	cursor: text;
+}
+
+.inptyear {
+	width: 66px;
+}
+
+.inptyear .input {
+	width: 54px;
+}
+
+.inptmonth {
+	width: 66px;
+}
+
+.inptmonth .input {
+	width: 54px;
+}
+
+.inptday {
+	width: 66px;
+}
+
+.inptday .input {
+	width: 54px;
+}
+
+.textIcon {
+	position: absolute;
+	top: 1px;
+	right: 2px;
+	color: #b0b0b0;
+}
+
+.textInpt {
+	position: absolute;
+	top: 1px;
+	left: 6px;
+	color: #b0b0b0;
+}

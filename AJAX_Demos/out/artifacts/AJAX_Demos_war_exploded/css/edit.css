@@ -1,0 +1,4 @@
+table {
+    border-collapse: collapse; /*让相邻边框合并*/
+    border: 1px solid black; /*边框1个像素*/
+}

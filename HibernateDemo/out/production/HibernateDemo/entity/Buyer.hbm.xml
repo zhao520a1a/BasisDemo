@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="entity.Buyer" table="buyer" schema="my_test">
+        <id name="buyerId">
+            <column name="buyer_id" sql-type="int(11)"/>
+        </id>
+        <property name="buyerName">
+            <column name="buyer_name" sql-type="varchar(20)" length="20"/>
+        </property>
+        <property name="buyerPassword">
+            <column name="buyer_password" sql-type="varchar(20)" length="20"/>
+        </property>
+        <property name="realname">
+            <column name="realname" sql-type="varchar(20)" length="20" not-null="true"/>
+        </property>
+        <property name="sex">
+            <column name="sex" sql-type="varchar(2)" length="2" not-null="true"/>
+        </property>
+        <property name="email">
+            <column name="email" sql-type="varchar(50)" length="50" not-null="true"/>
+        </property>
+        <property name="phone">
+            <column name="phone" sql-type="varchar(25)" length="25" not-null="true"/>
+        </property>
+        <property name="address">
+            <column name="address" sql-type="varchar(150)" length="150" not-null="true"/>
+        </property>
+        <property name="regTime">
+            <column name="regTime" sql-type="timestamp" not-null="true"/>
+        </property>
+        <property name="score">
+            <column name="score" sql-type="int(11)" not-null="true"/>
+        </property>
+
+        <!--inverse=true,表明设置由多的一方维持关联关系-->
+        <set name="indentList" cascade="all" inverse="true">
+            <key column="buyer_id"></key>
+            <one-to-many class="entity.Indent"/>
+        </set>
+    </class>
+</hibernate-mapping>

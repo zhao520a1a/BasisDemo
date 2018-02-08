@@ -1,0 +1,13 @@
+动态切面：在运行期才确定切点的切面
+实现步骤：
+1.	定义一个切点类，继承DynamicMethodMatcherPointcut类
+2.	重写mathes(Method, Class)方法
+3.	重写mathes(Method,Class,Object[])方法
+4.	重写getClassFilter()方法
+使用：
+1.	使用DefaultPointAdvisor类作为切面类
+2.	调用setPointcut()方法指定切点
+例如：
+DefaultPointcutAdvisor advisor = new DefaultPointcutAdvisor()
+advisor.setPointcut( 切点类)
+advisor.setAdvice( 增强实现类)

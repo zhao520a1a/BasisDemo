@@ -1,0 +1,5 @@
+静态方法名匹配切面：通过类过滤和方法名匹配定义切入点
+实现步骤：
+1．	定义一个类，继承StaticMethodMatcherPointcutAdvisor类
+2．	重写matches()方法
+3．	自定义getClassFilte()方法

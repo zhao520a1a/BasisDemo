@@ -1,0 +1,22 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title> 实现淡入淡出弹出窗口 </title>
+    <link rel="stylesheet" href="css/window.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquerywindow.js"></script>
+</head>
+<body>
+<a href="#" onclick="showwin()"> 显示浮动窗口 </a>
+<!--如何表示页面中的一个窗口?可以使用div来表示， 需要用css来改变一下这个div的样子-->
+<div id="window">
+    <div id="title"> 标题栏
+        <span id="close" onclick="hide()">X</span>
+    </div>
+    <div id="content">
+        Hi, 我是小窗口！！！
+    </div>
+</div>
+
+</body>
+</html>

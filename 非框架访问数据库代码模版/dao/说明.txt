@@ -1,0 +1,14 @@
+CourseDao和TeachCourseDao两个类的注释和方法写的比较全面和具体，可先参考；
+（CourseDao多了批量添加和删除方法，但在前台并未调用过）
+
+由于clazz表中teacherNubmer可以时null,因此在编写时：
+添加时要这样写：
+	if (clazz.getTeacherNumber().length() == 0)
+		pstmt.setNull(5, Types.VARCHAR);
+	else
+		pstmt.setString(5, clazz.getTeacherNumber());
+查询时要这样写：
+	if (rs.wasNull())
+		clazz.setTeacherNumber("");
+	else
+		clazz.setTeacherNumber( rs.getString(5) );

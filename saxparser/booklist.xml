@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<booklist>
+	<itbook>
+		<name>XML学习之路</name>
+		<price>68</price>
+	</itbook>
+	<itbook>
+		<name>程序猿的自我修养</name>
+		<price>88</price>
+	</itbook>
+	<itbook>
+		<name>全职高手</name>
+		<price>56</price>
+	</itbook>
+</booklist>

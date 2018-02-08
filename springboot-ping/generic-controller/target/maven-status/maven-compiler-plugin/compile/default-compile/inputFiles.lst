@@ -1,0 +1,8 @@
+/Users/golden/IdeaProjects/springboot-ping/generic-controller/src/main/java/com/springboot/ping/generic/controller/BaseController.java
+/Users/golden/IdeaProjects/springboot-ping/generic-controller/src/main/java/com/springboot/ping/generic/service/SpringContext.java
+/Users/golden/IdeaProjects/springboot-ping/generic-controller/src/main/java/com/springboot/ping/generic/vo/DataGrid.java
+/Users/golden/IdeaProjects/springboot-ping/generic-controller/src/main/java/com/springboot/ping/generic/controller/BaseQueryController.java
+/Users/golden/IdeaProjects/springboot-ping/generic-controller/src/main/java/com/springboot/ping/generic/service/GenericService.java
+/Users/golden/IdeaProjects/springboot-ping/generic-controller/src/main/java/com/springboot/ping/generic/controller/BaseCURDController.java
+/Users/golden/IdeaProjects/springboot-ping/generic-controller/src/main/java/com/springboot/ping/generic/GenericControllerConfiguration.java
+/Users/golden/IdeaProjects/springboot-ping/generic-controller/src/main/java/com/springboot/ping/generic/vo/Response.java

@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE 学生 SYSTEM  "twelveDTD.dtd">
+<学生>
+   <姓名> 张三 </姓名>
+   <姓名> 李四 </姓名>
+</学生>

@@ -1,0 +1,25 @@
+ 增强被织入到目标类的所有方法中，但是如果需要有选择性的织入到目标类某些特定的方法中时，就需要使用切点进行目标连接点的定位。增强提供了连接点方位信息：如织入到方法前面、后面等，而切点进一步描述织入到哪些类的哪些方法上。Spring通过org.springframework.aop.Pointcut接口描述切点，Pointcut由ClassFilter和MethodMatcher构成，它通过ClassFilter定位到某些特定类上，通过MethodMatcher定位到特定方法上。这样Pointcut就拥有了描述某些类的某些特定方法的能力。
+    Spring支持两种方法匹配器：静态方法匹配器和动态方法匹配器。静态方法匹配器，它仅对方法名签名（包括方法名和入参类型及顺序）进行匹配；而动态方法匹配器，会在运行期检查方法入参的值。静态匹配仅会判别一次；而动态匹配因为每次调用方法的入参都可能不一样，所以每次调用方法都必须判断。因此，动态匹配对性能的影响很大。
+
+1、切点类型
+    1）静态方法切点：org.springframework.aop.support.StaticMethodMatcherPointcut是静态方法切点的抽象基类，默认情况下它匹配所有的类。StaticMethodMatcherPointcut包括两个主要的子类，分别是NameMatchMethodPointcut和AbstractRegexpMethodPointcut，前者提供简单字符串匹配方法签名，而后者使用正则表达式匹配方法签名。
+    2）动态方法切点：org.springframework.aop.support.DynamicMethodMatcherPointcut 是动态方法切点的抽象基类，默认情况下它匹配所有的类。DynamicMethodMatcherPointcut类已经过时，可以使用DefaultPointcutAdvisor 和DynamicMethodMatcherPointcut动态方法匹配器替代之。
+    3）注解切点：org.springframework.aop.support.AnnotationMatchingPointcut实现类表示注解切点。使用AnnotationMatchingPointcut支持在Bean中直接通过JDK5.0注解标签定义的切点。
+    4）表达式切点：org.springframework.aop.support.ExpressionPointcut接口主要是为了支持AspectJ切点表达式语法而定义的接口。
+    5）流程切点：org.springframework.aop.support.ControlFlowPointcut实现类表示控制流程切点。ControlFlowPointcut是一种特殊的切点，它根据程序执行堆栈的信息查看目标方法是否由某一个方法直接或间接发起调用，以此判断是否为匹配的连接点。
+    6）复合切点：org.springframework.aop.suppot.ComposablePointcut实现类是为创建多个切点而提供的方便操作类。它所有的方法都返回ComposablePointcut类，这样，我们就可以使用连接表达式对切点进行操作。
+
+
+2.切面类型
+    Spring使用org.springframework.aop.Advisor接口表示切面的概念，一个切面同时包含横切代码和连接点信息。切面可以分为三类：一般切面、切点切面和引介切面。
+    1）Advisor：代表一般切面，它仅包含一个Advice。由于Advice包含了横切代码和连接点的信息，所以Advice本身就是一个简单的切面，只不过它代表的横切的连接点是所有目标类的所有方法，因为这个横切面太宽泛，所以一般不会直接使用。
+    2）PointcutAdvisor：代表具有切点的切面，它包含Advice和Pointcut两个类，这样，我们就可以通过类、方法名以及方法方位等信息灵活地定义切面的连接点，提供更具适用性的切面。
+    3）IntroductionAdvisor：代表引介切面，引介切面是对应引介增强的特殊的切面，它应用于类层面上，所以引介切面适用ClassFilter进行定义。
+
+    PointcutAdvisor主要有6个具体的实现类：
+    1）DefaultPointcutAdvisor：最常用的切面类型，它可以通过任意Pointcut和Advice定义一个切面，唯一不支持的是引介的切面类型，一般可以通过扩展该类实现自定义的切面。
+    2）NameMatchMethodPointcutAdvisor：通过该类可以定义按方法名定义切点的切面。
+    3）RegexpMethodPointcutAdvisor：允许用户以正则表达式模式串定义方法匹配的切点。
+    4）StaticMethodMatcherPointcutAdvisor：静态方法匹配器切点定义的切面，默认情况下，匹配所有的目标类。
+    5）AspectJExpressionPointcutAdvisor：用于AspectJ切点表达式定义切点的切面，它是Spring 2.0 新提供的类。
+    6）AspectJPointcutAdvisor：用于AspectJ语法定义切点的切面，它也是Spring 2.0 新提供的类。

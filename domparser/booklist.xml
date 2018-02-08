@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<booklist>
+    <itbook>
+        <name>Struts 2.1开发实战</name>
+        <price>79.00</price>
+    </itbook>
+    <itbook>
+        <name>疯狂XML讲义</name>
+        <price>89</price>
+    </itbook>
+</booklist>

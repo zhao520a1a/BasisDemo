@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <!-- 配置增强 -->
+    <bean id="beforeAdvice" class="org.hrbust.springapo.advice.MyBeforeAdvice"/>
+    <!-- 配置目标对象 -->
+    <bean id="target" class="org.hrbust.springapo.targer.ForumService"/>
+
+    <!--配置静态方法名匹配切面-->
+    <bean id="staticAdvisor" class="org.hrbust.springapo.myStaticMethodMatcherPointcutAdvisor.MyAdvisor">
+        <property name="advice">
+            <ref bean="beforeAdvice"/>
+        </property>
+    </bean>
+
+    <!-- 配置正则表达式切面 -->
+    <bean id="regexpAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+        <property name="advice">
+            <ref bean="beforeAdvice"/>
+        </property>
+        <property name="patterns">
+            <value>.*remove.*</value>
+        </property>
+    </bean>
+
+    <!-- 配置动态切点 -->
+    <bean id="dynamicPointcut" class="org.hrbust.springapo.myDynamicAdvisor.MyDynamicPointcut"/>
+    <!-- 配置动态切面 -->
+    <bean id="dynamicAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+        <property name="advice">
+            <ref bean="beforeAdvice"/>
+        </property>
+        <property name="pointcut">
+            <ref bean="dynamicPointcut"/>
+        </property>
+    </bean>
+
+
+    <!--配置引介切面-->
+    <bean id="pmonitor" class="org.hrbust.springapo.myIntroductionAdvisor.MyIntroductionInterceptor"/>
+
+    <!-- 配置代理对象 -->
+    <bean id="service" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <!--注入目标类所实现的接口-->
+        <property name="proxyInterfaces">
+            <value>org.hrbust.springapo.targer.ForumServiceInterface</value>
+        </property>
+        <!-- 引介增强所实现的接口 -->
+        <property name="interfaces">
+            <value>org.hrbust.springapo.myIntroductionAdvisor.Monitorable</value>
+        </property>
+        <!--注入目标类（指定对哪个Bean进行代理）  -->
+        <property name="target" ref="target"/>
+        <!--注入拦截器（切面或增强）——需要植入目标对象的Bean列表  -->
+        <property name="interceptorNames">  <!--织入切面-->
+            <!--<value> beforeAdvice </value>-->
+            <!--<value> staticAdvisor </value>-->
+            <!--<value> regexpAdvisor </value>-->
+            <!--<value> dynamicAdvisor </value>-->
+            <value>pmonitor</value>
+        </property>
+
+        <!--注入动态代理的方式：false:使用Jdk动态代理，true:使用CGlib动态代理
+        由于引介增强通过子类创建代理，所以强制使用CGLib代理实现机制 -->
+        <property name="proxyTargetClass" value="true"/>
+    </bean>
+
+
+</beans>

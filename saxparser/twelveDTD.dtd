@@ -1,0 +1,5 @@
+﻿<!ELEMENT 学生  (姓名*) >
+<!ELEMENT 姓名 (#PCDATA)>
+<!ENTITY word  PUBLIC "-//ISO16/Microsoft/word" "hello.doc" NDATA msword.exe >
+<!ENTITY pic SYSTEM "pic.jpg" NDATA mspaint.exe >
+

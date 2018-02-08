@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Hibernate4">
+    <CLASSES>
+      <root url="file://E:/Sourseroom/jar/Hibernate/hibernate-release-4.3.11.Final/lib/optional/c3p0" />
+      <root url="file://E:/Sourseroom/jar/Hibernate/hibernate-release-4.3.11.Final/lib/required" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://E:/Sourseroom/jar/Hibernate/hibernate-release-4.3.11.Final/lib/optional/c3p0" recursive="false" />
+    <jarDirectory url="file://E:/Sourseroom/jar/Hibernate/hibernate-release-4.3.11.Final/lib/required" recursive="false" />
+  </library>
+</component>

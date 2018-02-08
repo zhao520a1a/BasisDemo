@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--IoC练习开始-->
+    <!--    <bean name="car" class="org.hrbust.springIoC.Car">
+        <property name="brand" value="奥迪"/>
+        <property name="maxSpeed" value="100"/>
+        <property name="price" value="200000"/>
+        </bean>
+        -->
+
+    <!--
+        <bean name="boss" class="org.hrbust.springIoC.Boss">
+        &lt;!&ndash;使用构造器方式注入&ndash;&gt;
+        <constructor-arg name="car" ref="car"></constructor-arg>
+        &lt;!&ndash;使用setter方式注入&ndash;&gt;
+        <property name="car" ref="car"></property>
+        </bean>
+    -->
+
+    <!--   使用p命名空间的方式来注入Bean
+       需要在
+       <beans>中添加 xmlns:p="http://www.springframework.org/schema/p"
+       <bean name="boss" class="org.hrbust.springIoC.Boss" p:car-ref="car">
+       </bean>-->
+    <!--
+        使用注解注入
+        <context:annotation-config/>
+        <context:component-scan base-package="org.hrbust.springIoC"/>
+    -->
+
+
+    <!--
+        <bean name="person1" class="org.hrbust.springIoC.Person">
+            <property name="name" value="Tom"></property>
+        </bean>
+        <bean name="person" class="org.hrbust.springIoC.Person">
+            <property name="name" value="Golden"/>
+            <property name="age" value="23"/>
+            <property name="favorites">
+                <list>
+                    <value>游泳</value>
+                    <value>跑步</value>
+                    <value>弹吉他</value>
+                </list>
+            </property>
+            <property name="friends">
+                <map>
+                    <entry key="1" value-ref="person1"/>
+                </map>
+            </property>
+        </bean>-->
+
+    <!--IoC练习结束-->
+
+
+    <!--AOP练习开始-->
+
+    <!--配置目标对象-->
+    <bean name="target" class="org.hrbust.springAOP.NaiveWaiter"/>
+
+    <!--配置自定义的增强类-->
+    <!--<bean id="myBeforeAdvice" class="org.hrbust.springAOP.MyBeforeAdvice"></bean>-->
+    <!--<bean id="myAfterReturningAdviceAdvice" class="org.hrbust.springAOP.MyAfterReturningAdvice"></bean>-->
+
+    <!--静态方法名匹配切面-->
+    <!--<bean id="myStaticAdvisor" class="org.hrbust.springAOP.MyStaticAdvisor">-->
+        <!--<property name="advice">-->
+            <!--<ref bean="myBeforeAdvice"/>-->
+        <!--</property>-->
+    <!--</bean>-->
+
+    <!-- 配置动态切点 -->
+    <!--<bean id="myDynamicPointcut" class="org.hrbust.springAOP.MyPointcut"/>-->
+     <!--配置动态切面 -->
+    <!--<bean id="myDynamicAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">-->
+        <!--<property name="advice">-->
+            <!--<ref bean="myBeforeAdvice"/>-->
+        <!--</property>-->
+        <!--<property name="pointcut">-->
+            <!--<ref bean="myDynamicPointcut"/>-->
+        <!--</property>-->
+    <!--</bean>-->
+
+    <!--配置代理对象-->
+    <!--<bean id="waiterProxy" class="org.springframework.aop.framework.ProxyFactoryBean">-->
+        <!--<property name="proxyInterfaces" value="org.hrbust.springAOP.Waiter"/>-->
+        <!--<property name="target" ref="target"></property>-->
+        <!--&lt;!&ndash;<property name="interceptorNames" value="myStaticAdvisor"/>&ndash;&gt;-->
+        <!--<property name="interceptorNames" value="myDynamicAdvisor"/>-->
+        <!--<property name="proxyTargetClass" value="false"/>-->
+    <!--</bean>-->
+
+
+    <!--基于AspactJ的schema的方式配置AOP -->
+    <bean id="aspect" class="org.hrbust.springAOP.MyAspect"/>
+    <aop:config proxy-target-class="false">
+        <aop:pointcut expression="execution(* greetTo(..))" id="greetToPointcut"/>
+        <aop:aspect ref="aspect">
+            <aop:before method="doBefore"
+                        pointcut="execution(* greetTo(..)) and args(name)"/>
+            <aop:after-returning method="doAfterReturning"
+                                 pointcut="execution(* greetTo(..))"
+                                 returning="retVal"/>
+            <!--<aop:after method="doAfter"-->
+                       <!--pointcut-ref="greetToPointcut"/>-->
+            <!--<aop:after-throwing method="doThrowing"-->
+                                <!--pointcut-ref="greetToPointcut"-->
+                                <!--throwing="ex"/>-->
+            <!--<aop:around method="doAround"-->
+                        <!--pointcut-ref="greetToPointcut"/>-->
+        </aop:aspect>
+    </aop:config>
+
+
+    <!--AOP练习结束-->
+
+</beans>

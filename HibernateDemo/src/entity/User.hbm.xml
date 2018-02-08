@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <!--设置update()前发select,  动态更新：update只更新修改的字段-->
+    <class name="entity.User" table="T_USER" select-before-update="true" dynamic-update="true">
+        <id name="id" type="long" column="id">
+            <!--推荐：MySQL实现，数据库中字段设置为auto_increment -->
+            <generator class="identity"/>
+            <!--Hibernate实现，数据库该字段并不是自增的-->
+            <!--<generator class="increment"></generator> -->
+        </id>
+        <property name="username" column="name" length="20"/>
+        <property name="age"/>
+        <property name="birthday"/>
+        <property name="gender" length="2"/>
+
+        <one-to-one name="idCard" class="entity.IdCard" ></one-to-one>
+    </class>
+</hibernate-mapping>

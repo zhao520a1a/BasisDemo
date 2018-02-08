@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!-- 切面 -->
+    <bean id="aspect" class="org.hrbust.springaspectj.MyAspect"/>
+
+    <!-- 目标对象 -->
+    <bean id="waiter" class="org.hrbust.springaspectj.NaiveWaiter"/>
+
+
+    <aop:config proxy-target-class="false">
+        <aop:pointcut expression="execution(* greetTo(..))" id="greetToPointcut"/>
+        <aop:aspect ref="aspect">
+            <aop:before method="doBefore"
+                        pointcut="execution(* greetTo(..)) and args(name)"/>
+            <aop:after-returning method="doAfterReturning"
+                                 pointcut="execution(* serveTo(..))"
+                                 returning="retVal"/>
+            <aop:after method="doAfter"
+                       pointcut-ref="greetToPointcut"/>
+            <aop:after-throwing method="doThrowing"
+                                pointcut-ref="greetToPointcut"
+                                throwing="ex"/>
+            <aop:around method="doAround"
+                        pointcut-ref="greetToPointcut"/>
+        </aop:aspect>
+    </aop:config>
+
+</beans>
